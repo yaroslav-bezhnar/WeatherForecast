@@ -8,7 +8,7 @@ namespace WeatherForecast.DarkSkyApi.Library.Converters
     /// </summary>
     public class UtcDateTimeOffsetJsonConverter : JsonConverter<DateTimeOffset>
     {
-        #region " Static Fields "
+        #region Static Fields
 
         /// <summary>
         ///     DateTime representing 0 UNIX Time: January 1, 1970, GMT.
@@ -17,7 +17,7 @@ namespace WeatherForecast.DarkSkyApi.Library.Converters
 
         #endregion
 
-        #region " Public Methods "
+        #region Public Methods
 
         /// <summary>
         ///     Reads the JSON representation of the object.
