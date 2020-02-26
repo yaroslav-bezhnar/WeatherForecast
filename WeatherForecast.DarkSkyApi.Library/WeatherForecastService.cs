@@ -49,6 +49,8 @@ namespace WeatherForecast.DarkSkyApi.Library
         /// <exception cref="WeatherForecastException">Throws if DarkSky API secret key not specified.</exception>
         public WeatherForecastService( string apiKey )
         {
+            AssertApiKey( apiKey );
+
             _apiKey = apiKey;
         }
 
@@ -76,6 +78,243 @@ namespace WeatherForecast.DarkSkyApi.Library
 
         #endregion
 
+        #region Public Methods
+
+        /// <summary>
+        ///     Retrieves the weather forecast data asynchronously.
+        /// </summary>
+        /// <param name="latitude">The latitude to retrieve data for in degrees.</param>
+        /// <param name="longitude">The longitude to retrieve data for in degrees.</param>
+        /// <exception cref="WeatherForecastException">Throws if request to weather API is failed.</exception>
+        /// <returns>The weather forecast response.</returns>
+        public async Task<WeatherForecastResponse> GetWeatherForecastAsync( double latitude, double longitude )
+        {
+            return await GetWeatherForecastAsync( latitude, longitude, null, GetDefaultValue<Unit>(), GetDefaultValue<Language>(), null, null );
+        }
+
+        /// <summary>
+        ///     Retrieves the weather forecast data asynchronously.
+        /// </summary>
+        /// <param name="latitude">The latitude to retrieve data for in degrees.</param>
+        /// <param name="longitude">The longitude to retrieve data for in degrees.</param>
+        /// <param name="dateTime">The date to retrieve data for.
+        /// Returns the observed (in the past) or forecasted (in the future) hour-by-hour weather and daily weather conditions for a particular date.</param>
+        /// <exception cref="WeatherForecastException">Throws if request to weather API is failed.</exception>
+        /// <returns>The weather forecast response.</returns>
+        public async Task<WeatherForecastResponse> GetWeatherForecastAsync( double latitude, double longitude, DateTimeOffset? dateTime )
+        {
+            return await GetWeatherForecastAsync( latitude, longitude, dateTime, GetDefaultValue<Unit>(), GetDefaultValue<Language>(), null, null );
+        }
+
+        /// <summary>
+        ///     Retrieves the weather forecast data asynchronously.
+        /// </summary>
+        /// <param name="latitude">The latitude to retrieve data for in degrees.</param>
+        /// <param name="longitude">The longitude to retrieve data for in degrees.</param>
+        /// <param name="unit">The units of weather conditions.</param>
+        /// <exception cref="WeatherForecastException">Throws if request to weather API is failed.</exception>
+        /// <returns>The weather forecast response.</returns>
+        public async Task<WeatherForecastResponse> GetWeatherForecastAsync( double latitude, double longitude, Unit unit )
+        {
+            return await GetWeatherForecastAsync( latitude, longitude, null, unit, GetDefaultValue<Language>(), null, null );
+        }
+
+        /// <summary>
+        ///     Retrieves the weather forecast data asynchronously.
+        /// </summary>
+        /// <param name="latitude">The latitude to retrieve data for in degrees.</param>
+        /// <param name="longitude">The longitude to retrieve data for in degrees.</param>
+        /// <param name="dateTime">The date to retrieve data for.
+        /// Returns the observed (in the past) or forecasted (in the future) hour-by-hour weather and daily weather conditions for a particular date.</param>
+        /// <param name="unit">The units of weather conditions.</param>
+        /// <exception cref="WeatherForecastException">Throws if request to weather API is failed.</exception>
+        /// <returns>The weather forecast response.</returns>
+        public async Task<WeatherForecastResponse> GetWeatherForecastAsync( double latitude, double longitude, DateTimeOffset? dateTime, Unit unit )
+        {
+            return await GetWeatherForecastAsync( latitude, longitude, dateTime, unit, GetDefaultValue<Language>(), null, null );
+        }
+
+        /// <summary>
+        ///     Retrieves the weather forecast data asynchronously.
+        /// </summary>
+        /// <param name="latitude">The latitude to retrieve data for in degrees.</param>
+        /// <param name="longitude">The longitude to retrieve data for in degrees.</param>
+        /// <param name="language">The language to use for 'Summary' properties.</param>
+        /// <exception cref="WeatherForecastException">Throws if request to weather API is failed.</exception>
+        /// <returns>The weather forecast response.</returns>
+        public async Task<WeatherForecastResponse> GetWeatherForecastAsync( double latitude, double longitude, Language language )
+        {
+            return await GetWeatherForecastAsync( latitude, longitude, null, GetDefaultValue<Unit>(), language, null, null );
+        }
+
+        /// <summary>
+        ///     Retrieves the weather forecast data asynchronously.
+        /// </summary>
+        /// <param name="latitude">The latitude to retrieve data for in degrees.</param>
+        /// <param name="longitude">The longitude to retrieve data for in degrees.</param>
+        /// <param name="dateTime">The date to retrieve data for.
+        /// Returns the observed (in the past) or forecasted (in the future) hour-by-hour weather and daily weather conditions for a particular date.</param>
+        /// <param name="language">The language to use for 'Summary' properties.</param>
+        /// <exception cref="WeatherForecastException">Throws if request to weather API is failed.</exception>
+        /// <returns>The weather forecast response.</returns>
+        public async Task<WeatherForecastResponse> GetWeatherForecastAsync( double latitude, double longitude, DateTimeOffset? dateTime, Language language )
+        {
+            return await GetWeatherForecastAsync( latitude, longitude, dateTime, GetDefaultValue<Unit>(), language, null, null );
+        }
+
+        /// <summary>
+        ///     Retrieves the weather forecast data asynchronously.
+        /// </summary>
+        /// <param name="latitude">The latitude to retrieve data for in degrees.</param>
+        /// <param name="longitude">The longitude to retrieve data for in degrees.</param>
+        /// <param name="unit">The units of weather conditions.</param>
+        /// <param name="language">The language to use for 'Summary' properties.</param>
+        /// <exception cref="WeatherForecastException">Throws if request to weather API is failed.</exception>
+        /// <returns>The weather forecast response.</returns>
+        public async Task<WeatherForecastResponse> GetWeatherForecastAsync( double latitude, double longitude, Unit unit, Language language )
+        {
+            return await GetWeatherForecastAsync( latitude, longitude, null, unit, language, null, null );
+        }
+
+        /// <summary>
+        ///     Retrieves the weather forecast data asynchronously.
+        /// </summary>
+        /// <param name="latitude">The latitude to retrieve data for in degrees.</param>
+        /// <param name="longitude">The longitude to retrieve data for in degrees.</param>
+        /// <param name="dateTime">The date to retrieve data for.
+        /// Returns the observed (in the past) or forecasted (in the future) hour-by-hour weather and daily weather conditions for a particular date.</param>
+        /// <param name="unit">The units of weather conditions.</param>
+        /// <param name="language">The language to use for 'Summary' properties.</param>
+        /// <exception cref="WeatherForecastException">Throws if request to weather API is failed.</exception>
+        /// <returns>The weather forecast response.</returns>
+        public async Task<WeatherForecastResponse> GetWeatherForecastAsync( double latitude, double longitude, DateTimeOffset? dateTime, Unit unit, Language language )
+        {
+            return await GetWeatherForecastAsync( latitude, longitude, dateTime, unit, language, null, null );
+        }
+
+        /// <summary>
+        ///     Retrieves the weather forecast data asynchronously.
+        /// </summary>
+        /// <param name="latitude">The latitude to retrieve data for in degrees.</param>
+        /// <param name="longitude">The longitude to retrieve data for in degrees.</param>
+        /// <param name="unit">The units of weather conditions.</param>
+        /// <param name="language">The language to use for 'Summary' properties.</param>
+        /// <param name="extends">The type of weather forecast to retrieve extended results for.
+        /// When present, return hour-by-hour data for the next 168 hours, instead of the next 48.</param>
+        /// <exception cref="WeatherForecastException">Throws if request to weather API is failed.</exception>
+        /// <returns>The weather forecast response.</returns>
+        public async Task<WeatherForecastResponse> GetWeatherForecastAsync( double latitude, double longitude, Unit unit, Language language, IList<Extend> extends )
+        {
+            return await GetWeatherForecastAsync( latitude, longitude, null, unit, language, extends, null );
+        }
+
+        /// <summary>
+        ///     Retrieves the weather forecast data asynchronously.
+        /// </summary>
+        /// <param name="latitude">The latitude to retrieve data for in degrees.</param>
+        /// <param name="longitude">The longitude to retrieve data for in degrees.</param>
+        /// <param name="dateTime">The date to retrieve data for.
+        /// Returns the observed (in the past) or forecasted (in the future) hour-by-hour weather and daily weather conditions for a particular date.</param>
+        /// <param name="unit">The units of weather conditions.</param>
+        /// <param name="language">The language to use for 'Summary' properties.</param>
+        /// <param name="extends">The type of weather forecast to retrieve extended results for.
+        /// When present, return hour-by-hour data for the next 168 hours, instead of the next 48.</param>
+        /// <exception cref="WeatherForecastException">Throws if request to weather API is failed.</exception>
+        /// <returns>The weather forecast response.</returns>
+        public async Task<WeatherForecastResponse> GetWeatherForecastAsync( double latitude, double longitude, DateTimeOffset? dateTime, Unit unit, Language language, IList<Extend> extends )
+        {
+            return await GetWeatherForecastAsync( latitude, longitude, dateTime, unit, language, extends, null );
+        }
+
+        /// <summary>
+        ///     Retrieves the weather forecast data asynchronously.
+        /// </summary>
+        /// <param name="latitude">The latitude to retrieve data for in degrees.</param>
+        /// <param name="longitude">The longitude to retrieve data for in degrees.</param>
+        /// <param name="unit">The units of weather conditions.</param>
+        /// <param name="language">The language to use for 'Summary' properties.</param>
+        /// <param name="excludes">Blocks that should be excluded from the API response.</param>
+        /// <exception cref="WeatherForecastException">Throws if request to weather API is failed.</exception>
+        /// <returns>The weather forecast response.</returns>
+        public async Task<WeatherForecastResponse> GetWeatherForecastAsync( double latitude, double longitude, Unit unit, Language language, IList<Exclude> excludes )
+        {
+            return await GetWeatherForecastAsync( latitude, longitude, null, unit, language, null, excludes );
+        }
+
+        /// <summary>
+        ///     Retrieves the weather forecast data asynchronously.
+        /// </summary>
+        /// <param name="latitude">The latitude to retrieve data for in degrees.</param>
+        /// <param name="longitude">The longitude to retrieve data for in degrees.</param>
+        /// <param name="dateTime">The date to retrieve data for.
+        /// Returns the observed (in the past) or forecasted (in the future) hour-by-hour weather and daily weather conditions for a particular date.</param>
+        /// <param name="unit">The units of weather conditions.</param>
+        /// <param name="language">The language to use for 'Summary' properties.</param>
+        /// <param name="excludes">Blocks that should be excluded from the API response.</param>
+        /// <exception cref="WeatherForecastException">Throws if request to weather API is failed.</exception>
+        /// <returns>The weather forecast response.</returns>
+        public async Task<WeatherForecastResponse> GetWeatherForecastAsync( double latitude, double longitude, DateTimeOffset? dateTime, Unit unit, Language language, IList<Exclude> excludes )
+        {
+            return await GetWeatherForecastAsync( latitude, longitude, dateTime, unit, language, null, excludes );
+        }
+
+        /// <summary>
+        ///     Retrieves the weather forecast data asynchronously.
+        /// </summary>
+        /// <param name="latitude">The latitude to retrieve data for in degrees.</param>
+        /// <param name="longitude">The longitude to retrieve data for in degrees.</param>
+        /// <param name="extends"> The type of weather forecast to retrieve extended results for.
+        /// When present, return hour-by-hour data for the next 168 hours, instead of the next 48.</param>
+        /// <exception cref="WeatherForecastException">Throws if request to weather API is failed.</exception>
+        /// <returns>The weather forecast response.</returns>
+        public async Task<WeatherForecastResponse> GetWeatherForecastAsync( double latitude, double longitude, IList<Extend> extends )
+        {
+            return await GetWeatherForecastAsync( latitude, longitude, null, GetDefaultValue<Unit>(), GetDefaultValue<Language>(), extends, null );
+        }
+
+        /// <summary>
+        ///     Retrieves the weather forecast data asynchronously.
+        /// </summary>
+        /// <param name="latitude">The latitude to retrieve data for in degrees.</param>
+        /// <param name="longitude">The longitude to retrieve data for in degrees.</param>
+        /// <param name="dateTime">The date to retrieve data for.
+        /// Returns the observed (in the past) or forecasted (in the future) hour-by-hour weather and daily weather conditions for a particular date.</param>
+        /// <param name="extends"> The type of weather forecast to retrieve extended results for.
+        /// When present, return hour-by-hour data for the next 168 hours, instead of the next 48.</param>
+        /// <exception cref="WeatherForecastException">Throws if request to weather API is failed.</exception>
+        /// <returns>The weather forecast response.</returns>
+        public async Task<WeatherForecastResponse> GetWeatherForecastAsync( double latitude, double longitude, DateTimeOffset? dateTime, IList<Extend> extends )
+        {
+            return await GetWeatherForecastAsync( latitude, longitude, dateTime, GetDefaultValue<Unit>(), GetDefaultValue<Language>(), extends, null );
+        }
+
+        /// <summary>
+        ///     Retrieves the weather forecast data asynchronously.
+        /// </summary>
+        /// <param name="latitude">The latitude to retrieve data for in degrees.</param>
+        /// <param name="longitude">The longitude to retrieve data for in degrees.</param>
+        /// <param name="excludes">Blocks that should be excluded from the API response.</param>
+        /// <exception cref="WeatherForecastException">Throws if request to weather API is failed.</exception>
+        /// <returns>The weather forecast response.</returns>
+        public async Task<WeatherForecastResponse> GetWeatherForecastAsync( double latitude, double longitude, IList<Exclude> excludes )
+        {
+            return await GetWeatherForecastAsync( latitude, longitude, null, GetDefaultValue<Unit>(), GetDefaultValue<Language>(), null, excludes );
+        }
+
+        /// <summary>
+        ///     Retrieves the weather forecast data asynchronously.
+        /// </summary>
+        /// <param name="latitude">The latitude to retrieve data for in degrees.</param>
+        /// <param name="longitude">The longitude to retrieve data for in degrees.</param>
+        /// <param name="dateTime">The date to retrieve data for.
+        /// Returns the observed (in the past) or forecasted (in the future) hour-by-hour weather and daily weather conditions for a particular date.</param>
+        /// <param name="excludes">Blocks that should be excluded from the API response.</param>
+        /// <exception cref="WeatherForecastException">Throws if request to weather API is failed.</exception>
+        /// <returns>The weather forecast response.</returns>
+        public async Task<WeatherForecastResponse> GetWeatherForecastAsync( double latitude, double longitude, DateTimeOffset? dateTime, IList<Exclude> excludes )
+        {
+            return await GetWeatherForecastAsync( latitude, longitude, dateTime, GetDefaultValue<Unit>(), GetDefaultValue<Language>(), null, excludes );
+        }
 
         /// <summary>
         ///     Retrieves the weather forecast data asynchronously.
@@ -106,11 +345,15 @@ namespace WeatherForecast.DarkSkyApi.Library
             {
                 using ( var response = (HttpWebResponse) request.GetResponse() )
                 {
+                    AssertResponseStatusCode( response );
+
                     ApiCallsMade = int.Parse( response.Headers["X-Forecast-API-Calls"] );
                     ApiResponseTime = response.Headers["X-Response-Time"];
 
                     using ( var stream = response.GetResponseStream() )
                     {
+                        AssertStream( stream );
+
                         using ( var reader = new StreamReader( stream ) )
                         {
                             var jsonResponse = await reader.ReadToEndAsync().ConfigureAwait( false );
@@ -125,6 +368,11 @@ namespace WeatherForecast.DarkSkyApi.Library
                 throw new WeatherForecastException( "Request failed.", ex );
             }
         }
+
+        #endregion
+
+        #region Private Methods
+
         /// <summary>
         ///     Gets the API request Uri.
         /// </summary>
@@ -161,5 +409,50 @@ namespace WeatherForecast.DarkSkyApi.Library
 
             return request;
         }
+
+        #region Private Assert Methods
+
+        /// <summary>
+        ///     Checks if DarkSky API secret key is provided.
+        /// </summary>
+        /// <param name="apiKey">API key.</param>
+        /// <exception cref="WeatherForecastException">Throws if API key is not provided (null, empty or white space string).</exception>
+        private static void AssertApiKey( string apiKey )
+        {
+            if ( string.IsNullOrWhiteSpace( apiKey ) )
+            {
+                throw new WeatherForecastException( "DarkSky API secret key is not specified." );
+            }
+        }
+
+        /// <summary>
+        ///     Checks the status of the HTTP Web response.
+        /// </summary>
+        /// <param name="response">HTTP Web response resource.</param>
+        /// <exception cref="WeatherForecastException">Throws if <see cref="HttpWebResponse.StatusCode" /> is not <see cref="HttpStatusCode.OK" /> (status not 200).</exception>
+        private static void AssertResponseStatusCode( HttpWebResponse response )
+        {
+            if ( response.StatusCode != HttpStatusCode.OK )
+            {
+                throw new WeatherForecastException( response.StatusDescription );
+            }
+        }
+
+        /// <summary>
+        ///     Checks if IO Stream in not null.
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <exception cref="WeatherForecastException">Throws if IO Stream is null.</exception>
+        private static void AssertStream( Stream stream )
+        {
+            if ( stream == null )
+            {
+                throw new WeatherForecastException( "Failed to receive Response." );
+            }
+        }
+
+        #endregion
+
+        #endregion
     }
 }
