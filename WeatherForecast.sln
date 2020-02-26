@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.28307.1022
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DarkSkyApi", "DarkSkyApi", "{0B6B22DD-E4D7-46C9-999E-5D8ECFD9FD4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherForecast.DarkSkyApi.Console", "WeatherForecast.DarkSkyApi.Console\WeatherForecast.DarkSkyApi.Console.csproj", "{41D381B8-25C6-477A-A223-D235999C1B84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecast.DarkSkyApi.Console", "WeatherForecast.DarkSkyApi.Console\WeatherForecast.DarkSkyApi.Console.csproj", "{41D381B8-25C6-477A-A223-D235999C1B84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherForecast.DarkSkyApi.Library", "WeatherForecast.DarkSkyApi.Library\WeatherForecast.DarkSkyApi.Library.csproj", "{C2086985-815C-4BC3-844A-F2B1836E98B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecast.DarkSkyApi.Library", "WeatherForecast.DarkSkyApi.Library\WeatherForecast.DarkSkyApi.Library.csproj", "{C2086985-815C-4BC3-844A-F2B1836E98B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
