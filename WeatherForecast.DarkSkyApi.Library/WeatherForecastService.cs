@@ -136,7 +136,7 @@ namespace WeatherForecast.DarkSkyApi.Library
             }
             catch ( WebException ex )
             {
-                throw new WeatherForecastException( "Request failed.", ex );
+                throw new WeatherForecastException("Failed to get weather forecast data.", ex );
             }
         }
 
@@ -153,18 +153,16 @@ namespace WeatherForecast.DarkSkyApi.Library
                                       Unit unit,
                                       Language language,
                                       IList<Extend> extends,
-                                      IList<Exclude> excludes )
-        {
-            return string.Format( dateTime.HasValue ? TIME_SPECIFIED_WEATHER_FORECAST_URL : CURRENT_WEATHER_FORECAST_URL,
-                                 _apiKey,
-                                 latitude,
-                                 longitude,
-                                 unit.GetSpecifiedValue(),
-                                 language.GetSpecifiedValue(),
-                                 extends.JoinEnumParameters(),
-                                 excludes.JoinEnumParameters(),
-                                 dateTime.HasValue ? dateTime.Value.ToUnixTimeSeconds().ToString() : string.Empty );
-        }
+                                      IList<Exclude> excludes ) =>
+            string.Format( dateTime.HasValue ? TIME_SPECIFIED_WEATHER_FORECAST_URL : CURRENT_WEATHER_FORECAST_URL,
+                          _apiKey,
+                          latitude,
+                          longitude,
+                          unit.GetSpecifiedValue(),
+                          language.GetSpecifiedValue(),
+                          extends.JoinEnumParameters(),
+                          excludes.JoinEnumParameters(),
+                          dateTime.HasValue ? dateTime.Value.ToUnixTimeSeconds().ToString() : string.Empty );
 
         /// <summary>
         ///     Creates a new <see cref="HttpWebRequest" /> instance for the specified Uri resource.
@@ -172,7 +170,7 @@ namespace WeatherForecast.DarkSkyApi.Library
         /// <param name="requestUri">Specified Uri resource.</param>
         private static HttpWebRequest CreateWebRequest( string requestUri )
         {
-            var request = (HttpWebRequest) WebRequest.Create( requestUri );
+            var request = WebRequest.CreateHttp( requestUri );
             request.Method = "GET";
             request.Headers.Add( "Accept-Encoding", "gzip" );
             request.AutomaticDecompression = DecompressionMethods.GZip;
