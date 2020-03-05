@@ -110,39 +110,50 @@ namespace WeatherForecast.DarkSkyApi.Library
                                     extends,
                                     excludes );
 
-            var request = CreateWebRequest( url );
-
-            try
-            {
-                using ( var response = (HttpWebResponse) request.GetResponse() )
-                {
-                    AssertResponseStatusCode( response );
-
-                    ApiCallsMade = int.Parse( response.Headers["X-Forecast-API-Calls"] );
-                    ApiResponseTime = response.Headers["X-Response-Time"];
-
-                    using ( var stream = response.GetResponseStream() )
-                    {
-                        AssertStream( stream );
-
-                        using ( var reader = new StreamReader( stream ) )
-                        {
-                            var jsonResponse = await reader.ReadToEndAsync().ConfigureAwait( false );
-
-                            return JsonConvert.DeserializeObject<WeatherForecastResponse>( jsonResponse );
-                        }
-                    }
-                }
-            }
-            catch ( WebException ex )
-            {
-                throw new WeatherForecastException("Failed to get weather forecast data.", ex );
-            }
+            return await GetWeatherForecastAsync(url);
         }
 
         #endregion
 
         #region Private Methods
+
+        /// <summary>
+        /// Retrieves the weather forecast data asynchronously.
+        /// </summary>
+        /// <param name="url">The API request Uri.</param>
+        /// <exception cref="WeatherForecastException">Throws if request to weather API is failed.</exception>
+        /// <returns>The weather forecast response.</returns>
+        private async Task<WeatherForecastResponse> GetWeatherForecastAsync(string url)
+        {
+            var request = CreateWebRequest(url);
+
+            try
+            {
+                using (var response = (HttpWebResponse) request.GetResponse())
+                {
+                    AssertResponseStatusCode(response);
+
+                    ApiCallsMade = int.Parse(response.Headers["X-Forecast-API-Calls"]);
+                    ApiResponseTime = response.Headers["X-Response-Time"];
+
+                    using (var stream = response.GetResponseStream())
+                    {
+                        AssertStream(stream);
+
+                        using (var reader = new StreamReader(stream))
+                        {
+                            var jsonResponse = await reader.ReadToEndAsync().ConfigureAwait(false);
+
+                            return JsonConvert.DeserializeObject<WeatherForecastResponse>(jsonResponse);
+                        }
+                    }
+                }
+            }
+            catch (WebException ex)
+            {
+                throw new WeatherForecastException("Failed to get weather forecast data.", ex);
+            }
+        }
 
         /// <summary>
         ///     Gets the API request Uri.
