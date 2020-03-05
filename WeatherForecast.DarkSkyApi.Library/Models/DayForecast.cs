@@ -1,5 +1,5 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using NodaTime;
 using WeatherForecast.DarkSkyApi.Library.Converters;
 
 namespace WeatherForecast.DarkSkyApi.Library.Models
@@ -15,8 +15,8 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         ///     Gets/Sets the UNIX time of when the sun will rise during a given day.
         /// </summary>
         [JsonProperty( "sunriseTime" )]
-        [JsonConverter( typeof( UtcDateTimeOffsetJsonConverter ) )]
-        public DateTimeOffset SunriseTime
+        [JsonConverter( typeof( UtcInstantJsonConverter ) )]
+        public Instant SunriseTime
         {
             get;
             set;
@@ -26,8 +26,8 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         ///     Gets/Sets the UNIX time of when the sun will set during a given day.
         /// </summary>
         [JsonProperty( "sunsetTime" )]
-        [JsonConverter( typeof( UtcDateTimeOffsetJsonConverter ) )]
-        public DateTimeOffset SunsetTime
+        [JsonConverter( typeof( UtcInstantJsonConverter ) )]
+        public Instant SunsetTime
         {
             get;
             set;
@@ -59,8 +59,8 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         ///     Gets/Sets the UNIX time of when 'PrecipitationIntensityMax' occurs during a given day.
         /// </summary>
         [JsonProperty( "precipIntensityMaxTime" )]
-        [JsonConverter( typeof( UtcDateTimeOffsetJsonConverter ) )]
-        public DateTimeOffset PrecipitationIntensityMaxTime
+        [JsonConverter( typeof( UtcInstantJsonConverter ) )]
+        public Instant PrecipitationIntensityMaxTime
         {
             get;
             set;
@@ -80,8 +80,8 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         ///     Gets/Sets the UNIX time representing when the daytime high temperature occurs.
         /// </summary>
         [JsonProperty( "temperatureHighTime" )]
-        [JsonConverter( typeof( UtcDateTimeOffsetJsonConverter ) )]
-        public DateTimeOffset TemperatureHighTime
+        [JsonConverter( typeof( UtcInstantJsonConverter ) )]
+        public Instant TemperatureHighTime
         {
             get;
             set;
@@ -101,8 +101,8 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         ///     Gets/Sets the UNIX time representing when the overnight low temperature occurs.
         /// </summary>
         [JsonProperty( "temperatureLowTime" )]
-        [JsonConverter( typeof( UtcDateTimeOffsetJsonConverter ) )]
-        public DateTimeOffset TemperatureLowTime
+        [JsonConverter( typeof( UtcInstantJsonConverter ) )]
+        public Instant TemperatureLowTime
         {
             get;
             set;
@@ -122,8 +122,8 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         ///     Gets/Sets the UNIX time representing when the maximum temperature during a given date occurs.
         /// </summary>
         [JsonProperty( "temperatureMaxTime" )]
-        [JsonConverter( typeof( UtcDateTimeOffsetJsonConverter ) )]
-        public DateTimeOffset TemperatureMaxTime
+        [JsonConverter( typeof( UtcInstantJsonConverter ) )]
+        public Instant TemperatureMaxTime
         {
             get;
             set;
@@ -143,8 +143,8 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         ///     Gets/Sets the UNIX time representing when the minimum temperature during a given date occurs.
         /// </summary>
         [JsonProperty( "temperatureMinTime" )]
-        [JsonConverter( typeof( UtcDateTimeOffsetJsonConverter ) )]
-        public DateTimeOffset TemperatureMinTime
+        [JsonConverter( typeof( UtcInstantJsonConverter ) )]
+        public Instant TemperatureMinTime
         {
             get;
             set;
@@ -164,8 +164,8 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         ///     Gets/Sets the UNIX time representing when the daytime high apparent temperature occurs.
         /// </summary>
         [JsonProperty( "apparentTemperatureHighTime" )]
-        [JsonConverter( typeof( UtcDateTimeOffsetJsonConverter ) )]
-        public DateTimeOffset ApparentTemperatureHighTime
+        [JsonConverter( typeof( UtcInstantJsonConverter ) )]
+        public Instant ApparentTemperatureHighTime
         {
             get;
             set;
@@ -185,8 +185,8 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         ///     Gets/Sets the UNIX time representing when the overnight low apparent temperature occurs.
         /// </summary>
         [JsonProperty( "apparentTemperatureLowTime" )]
-        [JsonConverter( typeof( UtcDateTimeOffsetJsonConverter ) )]
-        public DateTimeOffset ApparentTemperatureLowTime
+        [JsonConverter( typeof( UtcInstantJsonConverter ) )]
+        public Instant ApparentTemperatureLowTime
         {
             get;
             set;
@@ -206,8 +206,8 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         ///     Gets/Sets the UNIX time representing when the maximum apparent temperature during a given date occurs.
         /// </summary>
         [JsonProperty( "apparentTemperatureMaxTime" )]
-        [JsonConverter( typeof( UtcDateTimeOffsetJsonConverter ) )]
-        public DateTimeOffset ApparentTemperatureMaxTime
+        [JsonConverter( typeof( UtcInstantJsonConverter ) )]
+        public Instant ApparentTemperatureMaxTime
         {
             get;
             set;
@@ -227,8 +227,8 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         ///     Gets/Sets the UNIX time representing  when the minimum apparent temperature during a given date occurs.
         /// </summary>
         [JsonProperty( "apparentTemperatureMinTime" )]
-        [JsonConverter( typeof( UtcDateTimeOffsetJsonConverter ) )]
-        public DateTimeOffset ApparentTemperatureMinTime
+        [JsonConverter( typeof( UtcInstantJsonConverter ) )]
+        public Instant ApparentTemperatureMinTime
         {
             get;
             set;

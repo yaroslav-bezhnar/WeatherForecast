@@ -1,5 +1,5 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using NodaTime;
 using WeatherForecast.DarkSkyApi.Library.Converters;
 
 namespace WeatherForecast.DarkSkyApi.Library.Models
@@ -16,8 +16,8 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         ///     The point of time provided all according to the local time zone.
         /// </summary>
         [JsonProperty( "time" )]
-        [JsonConverter( typeof( UtcDateTimeOffsetJsonConverter ) )]
-        public DateTimeOffset Time
+        [JsonConverter( typeof( UtcInstantJsonConverter ) )]
+        public Instant Time
         {
             get;
             set;

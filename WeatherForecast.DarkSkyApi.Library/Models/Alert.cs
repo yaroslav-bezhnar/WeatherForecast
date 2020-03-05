@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
+using NodaTime;
 using WeatherForecast.DarkSkyApi.Library.Converters;
 
 namespace WeatherForecast.DarkSkyApi.Library.Models
@@ -26,8 +26,8 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         ///     Gets/Sets the UNIX time at which the alert will expire.
         /// </summary>
         [JsonProperty( "expires", Required = Required.Always )]
-        [JsonConverter( typeof( UtcDateTimeOffsetJsonConverter ) )]
-        public DateTimeOffset Expires
+        [JsonConverter( typeof( UtcInstantJsonConverter ) )]
+        public Instant Expires
         {
             get;
             set;
@@ -57,8 +57,8 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         ///     Gets/Sets the UNIX time at which the alert was issued.
         /// </summary>
         [JsonProperty( "time", Required = Required.Always )]
-        [JsonConverter( typeof( UtcDateTimeOffsetJsonConverter ) )]
-        public DateTimeOffset Time
+        [JsonConverter( typeof( UtcInstantJsonConverter ) )]
+        public Instant Time
         {
             get;
             set;
