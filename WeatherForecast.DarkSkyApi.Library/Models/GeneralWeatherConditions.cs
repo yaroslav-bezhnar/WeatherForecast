@@ -14,7 +14,6 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Gets/Sets a human-readable summary of the forecast.
         /// </summary>
-        [JsonProperty( "summary" )]
         public string Summary
         {
             get;
@@ -24,7 +23,6 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Gets/Sets a machine-readable text summary that can be used to select an icon to display.
         /// </summary>
-        [JsonProperty( "icon" )]
         public string Icon
         {
             get;
@@ -35,7 +33,7 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         ///     Gets/Sets the list of <see cref="TCondition" />, ordered by time, which together describe the weather
         ///     conditions at the requested location over time.
         /// </summary>
-        [JsonProperty( "data", Required = Required.Always )]
+        [JsonProperty( Required = Required.Always )]
         public IList<TCondition> Data
         {
             get;

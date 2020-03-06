@@ -24,7 +24,7 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Gets/Sets the distance to the nearest weather station that contributed data to this response.
         /// </summary>
-        [JsonProperty( "nearest-station", Required = Required.Always )]
+        [JsonProperty( "nearest-station" )]
         public float NearestStation
         {
             get;
@@ -34,7 +34,7 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Gets/Sets the IDs for each data source utilized in servicing this request.
         /// </summary>
-        [JsonProperty( "sources", Required = Required.Always )]
+        [JsonProperty( Required = Required.Always )]
         public IList<string> Sources
         {
             get;
@@ -44,7 +44,7 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Gets/Sets the units which were used for the data in this request.
         /// </summary>
-        [JsonProperty( "units", Required = Required.Always )]
+        [JsonProperty( Required = Required.Always )]
         public string Units
         {
             get;

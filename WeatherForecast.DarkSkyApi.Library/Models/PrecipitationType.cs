@@ -16,19 +16,16 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Rain.
         /// </summary>
-        [EnumMember( Value = "rain" )]
         Rain,
 
         /// <summary>
         ///     Snow.
         /// </summary>
-        [EnumMember( Value = "snow" )]
         Snow,
 
         /// <summary>
         ///     Sleet.
         /// </summary>
-        [EnumMember( Value = "sleet" )]
         Sleet
     }
 }

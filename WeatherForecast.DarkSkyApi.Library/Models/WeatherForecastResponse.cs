@@ -14,7 +14,7 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Gets/Sets the requested latitude.
         /// </summary>
-        [JsonProperty( "latitude", Required = Required.Always )]
+        [JsonProperty( Required = Required.Always )]
         public float Latitude
         {
             get;
@@ -24,7 +24,7 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Gets/Sets the requested longitude.
         /// </summary>
-        [JsonProperty( "longitude", Required = Required.Always )]
+        [JsonProperty( Required = Required.Always )]
         public float Longitude
         {
             get;
@@ -34,7 +34,7 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Gets/Sets the IANA timezone name for the requested location.
         /// </summary>
-        [JsonProperty( "timezone", Required = Required.Always )]
+        [JsonProperty( Required = Required.Always )]
         public string TimeZone
         {
             get;
@@ -45,7 +45,6 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         ///     Gets/Sets the current timezone offset in hours.
         ///     Deprecated: use 'TimeZone', instead.
         /// </summary>
-        [JsonProperty( "offset" )]
         [Obsolete( "Use 'TimeZone', instead." )]
         public double Offset
         {
@@ -56,7 +55,6 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Gets/Sets the the current weather conditions at the requested location.
         /// </summary>
-        [JsonProperty( "currently" )]
         public CurrentForecast Currently
         {
             get;
@@ -66,7 +64,6 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Gets/Sets the weather conditions minute-by-minute for the next hour.
         /// </summary>
-        [JsonProperty( "minutely" )]
         public GeneralWeatherConditions<MinuteForecast> Minutely
         {
             get;
@@ -76,7 +73,6 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Gets/Sets the weather conditions hour-by-hour for the next two days.
         /// </summary>
-        [JsonProperty( "hourly" )]
         public GeneralWeatherConditions<HourForecast> Hourly
         {
             get;
@@ -86,7 +82,6 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Gets/Sets the weather conditions day-by-day for the next week.
         /// </summary>
-        [JsonProperty( "daily" )]
         public GeneralWeatherConditions<DayForecast> Daily
         {
             get;
@@ -96,7 +91,6 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Gets/Sets any severe weather alerts pertinent to the requested location.
         /// </summary>
-        [JsonProperty( "alerts" )]
         public IList<Alert> Alerts
         {
             get;
@@ -106,7 +100,6 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Gets/Sets the metadata (flags) associated with this weather forecast.
         /// </summary>
-        [JsonProperty( "flags" )]
         public Flags Flags
         {
             get;

@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace WeatherForecast.DarkSkyApi.Library.Models
+﻿namespace WeatherForecast.DarkSkyApi.Library.Models
 {
     /// <summary>
     ///     Represents a class that contains a current weather conditions at the requested location.
@@ -12,7 +10,6 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Gets/Sets the approximate distance to the nearest storm.
         /// </summary>
-        [JsonProperty( "nearestStormDistance" )]
         public float NearestStormDistance
         {
             get;
@@ -22,7 +19,6 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Gets/Sets the approximate direction of the nearest storm, in degrees.
         /// </summary>
-        [JsonProperty( "nearestStormBearing" )]
         public float NearestStormBearing
         {
             get;
@@ -32,7 +28,6 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Gets/Sets the amount of snowfall accumulation expected to occur.
         /// </summary>
-        [JsonProperty( "precipAccumulation" )]
         public float PrecipitationAccumulation
         {
             get;
@@ -42,7 +37,6 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Gets/Sets the air temperature, in degrees.
         /// </summary>
-        [JsonProperty( "temperature" )]
         public float Temperature
         {
             get;
@@ -52,7 +46,6 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Gets/Sets the apparent ("feels like") temperature, in degrees.
         /// </summary>
-        [JsonProperty( "apparentTemperature" )]
         public float ApparentTemperature
         {
             get;

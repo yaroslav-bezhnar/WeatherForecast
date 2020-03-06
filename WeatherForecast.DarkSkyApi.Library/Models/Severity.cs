@@ -19,19 +19,16 @@ namespace WeatherForecast.DarkSkyApi.Library.Models
         /// <summary>
         ///     Indicates that individuals should be aware of potentially severe weather.
         /// </summary>
-        [EnumMember( Value = "advisory" )]
         Advisory,
 
         /// <summary>
         ///     Indicates that individuals should prepare for potentially severe weather.
         /// </summary>
-        [EnumMember( Value = "watch" )]
         Watch,
 
         /// <summary>
         ///     Indicates that individuals should take immediate action to protect themselves and others from potentially severe weather.
         /// </summary>
-        [EnumMember( Value = "warning" )]
         Warning
     }
 }
