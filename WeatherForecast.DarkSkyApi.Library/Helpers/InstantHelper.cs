@@ -8,7 +8,7 @@ namespace WeatherForecast.DarkSkyApi.Library.Helpers
     /// </summary>
     public static class InstantHelper
     {
-        #region " Public Methods "
+        #region Public Methods
 
         /// <summary>
         ///     Convert the timeline of <see cref="Instant" /> to a <see cref="OffsetDateTime" /> for a for the given IANA time zone.

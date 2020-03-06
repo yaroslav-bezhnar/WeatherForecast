@@ -11,7 +11,7 @@ namespace WeatherForecast.DarkSkyApi.Library.Helpers
     /// </summary>
     public static class EnumHelper
     {
-        #region " Public Methods "
+        #region Public Methods
 
         public static TEnum GetDefaultValue<TEnum>() where TEnum : struct
         {

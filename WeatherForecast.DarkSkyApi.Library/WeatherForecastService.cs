@@ -110,7 +110,7 @@ namespace WeatherForecast.DarkSkyApi.Library
                                     extends,
                                     excludes );
 
-            return await GetWeatherForecastAsync(url);
+            return await GetWeatherForecastAsync( url );
         }
 
         #endregion
@@ -123,35 +123,35 @@ namespace WeatherForecast.DarkSkyApi.Library
         /// <param name="url">The API request Uri.</param>
         /// <exception cref="WeatherForecastException">Throws if request to weather API is failed.</exception>
         /// <returns>The weather forecast response.</returns>
-        private async Task<WeatherForecastResponse> GetWeatherForecastAsync(string url)
+        private async Task<WeatherForecastResponse> GetWeatherForecastAsync( string url )
         {
-            var request = CreateWebRequest(url);
+            var request = CreateWebRequest( url );
 
             try
             {
-                using (var response = (HttpWebResponse) request.GetResponse())
+                using ( var response = (HttpWebResponse) request.GetResponse() )
                 {
                     AssertResponseStatusCode(response);
 
-                    ApiCallsMade = int.Parse(response.Headers["X-Forecast-API-Calls"]);
+                    ApiCallsMade = int.Parse( response.Headers["X-Forecast-API-Calls"] );
                     ApiResponseTime = response.Headers["X-Response-Time"];
 
-                    using (var stream = response.GetResponseStream())
+                    using ( var stream = response.GetResponseStream() )
                     {
-                        AssertStream(stream);
+                        AssertStream( stream );
 
-                        using (var reader = new StreamReader(stream))
+                        using ( var reader = new StreamReader( stream ) )
                         {
-                            var jsonResponse = await reader.ReadToEndAsync().ConfigureAwait(false);
+                            var jsonResponse = await reader.ReadToEndAsync().ConfigureAwait( false );
 
-                            return JsonConvert.DeserializeObject<WeatherForecastResponse>(jsonResponse);
+                            return JsonConvert.DeserializeObject<WeatherForecastResponse>( jsonResponse );
                         }
                     }
                 }
             }
-            catch (WebException ex)
+            catch ( WebException ex )
             {
-                throw new WeatherForecastException("Failed to get weather forecast data.", ex);
+                throw new WeatherForecastException( "Failed to get weather forecast data.", ex );
             }
         }
 
@@ -199,10 +199,7 @@ namespace WeatherForecast.DarkSkyApi.Library
         /// <exception cref="WeatherForecastException">Throws if API key is not provided (null, empty or white space string).</exception>
         private static void AssertApiKey( string apiKey )
         {
-            if ( string.IsNullOrWhiteSpace( apiKey ) )
-            {
-                throw new WeatherForecastException( "DarkSky API secret key is not specified." );
-            }
+            if ( string.IsNullOrWhiteSpace( apiKey ) ) throw new WeatherForecastException( "DarkSky API secret key is not specified." );
         }
 
         /// <summary>
@@ -212,23 +209,17 @@ namespace WeatherForecast.DarkSkyApi.Library
         /// <exception cref="WeatherForecastException">Throws if <see cref="HttpWebResponse.StatusCode" /> is not <see cref="HttpStatusCode.OK" /> (status not 200).</exception>
         private static void AssertResponseStatusCode( HttpWebResponse response )
         {
-            if ( response.StatusCode != HttpStatusCode.OK )
-            {
-                throw new WeatherForecastException( response.StatusDescription );
-            }
+            if ( response.StatusCode != HttpStatusCode.OK ) throw new WeatherForecastException( response.StatusDescription );
         }
 
         /// <summary>
         ///     Checks if IO Stream in not null.
         /// </summary>
-        /// <param name="stream"></param>
+        /// <param name="stream">The stream that used to read the body of the response from the server.</param>
         /// <exception cref="WeatherForecastException">Throws if IO Stream is null.</exception>
         private static void AssertStream( Stream stream )
         {
-            if ( stream == null )
-            {
-                throw new WeatherForecastException( "Failed to receive Response." );
-            }
+            if ( stream == null ) throw new WeatherForecastException( "Failed to receive Response." );
         }
 
         #endregion
